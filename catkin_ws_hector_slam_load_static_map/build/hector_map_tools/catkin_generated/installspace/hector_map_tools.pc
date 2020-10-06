@@ -1,0 +1,8 @@
+prefix=/home/shiqing/catkin_ws_hector_slam_load_static_map/install
+
+Name: hector_map_tools
+Description: Description of hector_map_tools
+Version: 0.3.5
+Cflags: -I/home/shiqing/catkin_ws_hector_slam_load_static_map/install/include
+Libs: -L/home/shiqing/catkin_ws_hector_slam_load_static_map/install/lib 
+Requires: nav_msgs

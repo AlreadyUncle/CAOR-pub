@@ -1,0 +1,11 @@
+<launch>
+  <arg name="cmd_vel" default="/cmd_vel"/>
+  <arg name="name" default="turtlebot3"/>
+  <arg name="set_prefix" default="" />
+
+  <param name="cmd_vel_topic_name" value="$(arg cmd_vel)"/>
+  <param name="path_filename" value="/home/shiqing/catkin_ws_turtlebot3/src/turtlebot3_autodrive/designed trajectories/01_gt.txt"/>
+  <param name="prefix" value="$(arg set_prefix)" />
+
+  <node name="$(arg name)_autodrive" pkg="turtlebot3_autodrive" type="turtlebot3_autodrive" required="true" output="screen"/>
+</launch>

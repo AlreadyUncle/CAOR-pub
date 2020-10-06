@@ -1,0 +1,8 @@
+prefix=/home/shiqing/catkin_ws_hector_slam_load_static_map/install
+
+Name: learning_tf
+Description: Description of learning_tf
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/shiqing/catkin_ws_hector_slam_load_static_map/install/lib 
+Requires: 

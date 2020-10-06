@@ -1,0 +1,10 @@
+<launch>
+  <arg name="cmd_vel" default="/cmd_vel"/>
+  <arg name="name" default="turtlebot3"/>
+  <arg name="set_prefix" default=""/>
+
+  <param name="cmd_vel_topic_name" value="$(arg cmd_vel)"/>
+  <param name="prefix" value="$(arg set_prefix)"/>
+
+  <node name="$(arg name)$(arg set_prefix)_drive" pkg="turtlebot3_gazebo" type="turtlebot3_drive" required="true" output="screen"/>
+</launch>

@@ -1,0 +1,8 @@
+prefix=/home/shiqing/catkin_ws_hector_slam_load_static_map/devel
+
+Name: hector_slam_kitti
+Description: Description of hector_slam_kitti
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/shiqing/catkin_ws_hector_slam_load_static_map/devel/lib 
+Requires: 

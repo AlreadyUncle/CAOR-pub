@@ -1,0 +1,8 @@
+prefix=/home/shiqing/catkin_ws_hector_slam/install
+
+Name: hector_slam_launch
+Description: Description of hector_slam_launch
+Version: 0.3.5
+Cflags: 
+Libs: -L/home/shiqing/catkin_ws_hector_slam/install/lib 
+Requires: 

@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/shiqing/catkin_ws_turtlebot3/devel/setup.sh

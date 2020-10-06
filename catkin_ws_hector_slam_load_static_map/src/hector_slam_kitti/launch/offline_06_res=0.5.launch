@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <arg name="geotiff_map_file_path" default="$(find hector_geotiff)/maps"/>
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find hector_slam_kitti)/map/odom_06_res=0.5.yaml" />
+
+  <param name="/use_sim_time" value="true"/>
+
+  <node pkg="rviz" type="rviz" name="rviz"
+    args="-d $(find hector_slam_kitti)/rviz_cfg/mapping_demo.rviz"/>
+
+  <!--<param name="robot_description"
+    textfile="$(find hector_slam_kitti)/urdf/backpack_2d.urdf" />-->
+
+  <include file="$(find hector_slam_kitti)/launch/mapping_kitti.launch">
+    <arg name="tf_map_scanmatch_transform_frame_name" value="base_link"/>
+    <arg name="base_frame" value="base_link"/>
+    <arg name="odom_frame" value="base_link"/>
+    <arg name="pub_map_odom_transform" value="true"/>
+    <arg name="scan_subscriber_queue_size" value="50"/>
+    <arg name="map_size" value="5120"/>
+    <arg name="scan_topic" value="scan"/>
+    <arg name="map_resolution" value="0.5"/>
+  </include>
+
+  <include file="$(find hector_slam_kitti)/launch/geotiff_mapper_kitti.launch">
+    <arg name="trajectory_source_frame_name" value="base_link"/>
+    <arg name="map_file_path" value="$(arg geotiff_map_file_path)"/>
+    <arg name="txt_name_1" value="/home/shiqing/kitti2bag-master/kitti2bag/hector_slam/06_offline_res=0.5.txt"/>
+    <arg name="txt_name_2" value="/home/shiqing/kitti2bag-master/kitti2bag/hector_slam/06_offline_ground_truth_res=0.5.txt"/>
+  </include>
+
+  <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan" >
+    <remap from="cloud_in" to="/kitti/velo/pointcloud"/>
+    <param name="target_frame" value="velo_link"/>
+    <param name="angle_increment" value="1.0/6000.0"/>
+    <param name="min_height" value="-0.8"/>
+    <param name="max_height" value="-0.7"/>
+    <param name="scan_time" value="1.0/10000."/>
+    <param name="concurrency_level" value="1"/>
+    <param name="use_inf" value="false"/>
+    <param name="range_max" value="200.0"/>
+  </node>
+
+  <node name="playbag" pkg="rosbag" type="play" required="true" args=" --rate 0.1 --clock $(arg bag_filename)"/>
+
+</launch>

@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/shiqing/catkin_ws_hector_slam_load_static_map/devel/setup.sh
